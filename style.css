@@ -1,0 +1,850 @@
+/* ... (предыдущие стили остаются без изменений) ... */
+
+/* Section: Teams */
+
+
+/* Общие стили */
+:root {
+    --primary-color: #160596;
+    /* Яркий, акцентный цвет */
+    --secondary-color: #2d3436;
+    /* Темный фон */
+    --dark-gray: #34495e;
+    --light-gray: #bdc3c7;
+    --accent-color: #00a8ff;
+    /* Дополнительный акцент */
+    --font-heading: 'Orbitron', sans-serif;
+    /* Футуристичный шрифт для заголовков */
+    --font-body: 'Roboto', sans-serif;
+    /* Читаемый шрифт для текста */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--secondary-color);
+    color: var(--light-gray);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Предотвращаем горизонтальный скролл */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 4rem;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+}
+
+h2 {
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* Header (Hero Section) */
+.hero {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://via.placeholder.com/1920x1080/222/fff?text=CS2+Background') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* Скрыть переполнение, если есть */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255, 71, 87, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
+    /* Легкое свечение */
+    z-index: 1;
+}
+
+.hero .container {
+    z-index: 2;
+    /* Поверх псевдоэлемента */
+}
+
+.hero-title {
+    font-size: 5rem;
+    margin-bottom: 10px;
+    letter-spacing: 5px;
+    text-shadow: 0 0 15px var(--primary-color);
+}
+
+.hero-subtitle {
+    font-size: 2rem;
+    color: var(--light-gray);
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.hero-cta .btn {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    padding: 15px 35px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    cursor: pointer;
+    /* Индикация, что можно нажать */
+}
+
+.scroll-indicator p {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: var(--light-gray);
+}
+
+.scroll-indicator svg {
+    fill: var(--light-gray);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Sections */
+.section {
+    padding: 80px 0;
+    position: relative;
+    /* Для возможности позиционирования псевдоэлементов */
+}
+
+.section-title {
+    display: block;
+    margin-bottom: 40px;
+}
+
+.section-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    /* Для адаптивности */
+}
+
+.text-block {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-block img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Details Section */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.detail-item {
+    background-color: var(--dark-gray);
+    padding: 30px 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.detail-item .icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.detail-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.detail-item p {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.detail-item a.link-rules {
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+/* Rules Section */
+.rules-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--dark-gray);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.rules-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.rules-content ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.rules-content ul li::before {
+    content: '\2022';
+    /* Bullet point */
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.rules-content a.link-discord {
+    font-weight: 500;
+}
+
+/* CTA Section (Register) */
+.cta-section {
+    text-align: center;
+    background: linear-gradient(rgba(45, 52, 54, 0.9), rgba(45, 52, 54, 0.9)), url('https://via.placeholder.com/1920x1080/111/fff?text=Gaming+Arena') center/cover no-repeat;
+    position: relative;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(0, 168, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: 1;
+}
+
+.cta-section .section-title {
+    z-index: 2;
+}
+
+.cta-section .section-subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    z-index: 2;
+}
+
+.cta-section .btn-large {
+    font-size: 1.5rem;
+    padding: 20px 50px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 168, 255, 0.4);
+}
+
+.register-note {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: var(--light-gray);
+    z-index: 2;
+}
+
+/* Footer */
+.footer {
+    background-color: #1e272e;
+    color: #8395a7;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9rem;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
+
+.social-links a {
+    color: #8395a7;
+    margin-left: 15px;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: #e13b4b;
+    box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
+    transform: translateY(-3px);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.8rem;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .section-content {
+        flex-direction: column;
+    }
+
+    .text-block,
+    .image-block {
+        width: 100%;
+    }
+
+    .footer .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .social-links {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    .btn-primary.btn-large {
+        font-size: 1.3rem;
+        padding: 15px 35px;
+    }
+
+    .detail-item {
+        padding: 20px 15px;
+    }
+
+    .rules-content {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 95%;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+    }
+
+    .hero-cta .btn {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .section-content {
+        gap: 20px;
+    }
+
+    .btn-primary.btn-large {
+        font-size: 1.2rem;
+        padding: 12px 30px;
+    }
+
+    .scroll-indicator {
+        bottom: 20px;
+    }
+}
+
+#teams {
+    margin: 0 auto;
+    background-color: #2c3e50;
+    /* Чуть другой темный фон для выделения */
+}
+
+.teams-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    /* Расстояние между командами */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.team-card {
+    background-color: var(--dark-gray);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.team-name {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    text-align: left;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.team-name::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 70px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* Карточки игроков */
+    gap: 10px;
+}
+
+.player-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #34495e;
+    /* Чуть светлее, чем team-card */
+    padding: 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.player-card:hover {
+    background-color: #3c5269;
+    transform: translateY(-1px);
+}
+
+.player-image-wrapper {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-color);
+    /* Обводка вокруг фото */
+    position: relative;
+    /* Для возможного эффекта наведения */
+}
+
+.player-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 71, 87, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.player-card:hover .player-image-wrapper::before {
+    opacity: 1;
+}
+
+
+.player-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Масштабирует изображение, сохраняя пропорции, и обрезает лишнее */
+    display: block;
+}
+
+.player-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.player-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.player-role {
+    font-size: 0.9rem;
+    color: var(--light-gray);
+    font-weight: 300;
+}
+
+/* Responsive Styles for Teams Section */
+@media (max-width: 768px) {
+    .team-name {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .team-name::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .players-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .player-image-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+
+    .player-name {
+        font-size: 1rem;
+    }
+
+    .player-role {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .teams-container {
+        gap: 40px;
+    }
+
+    .team-card {
+        padding: 30px 20px;
+    }
+
+    .players-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 15px;
+    }
+
+    .player-image-wrapper {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+/* --- Блок Призов --- */
+.prizes-section {
+    background-color: #1e272e;
+    /* Темный фон для этой секции */
+    padding: 80px 0;
+}
+
+.prizes-section .section-title {
+    color: #fff;
+    /* Цвет заголовка */
+}
+
+.prizes-section .section-subtitle {
+    color: var(--light-gray);
+    font-weight: 300;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.prizes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Адаптивная сетка */
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.prize-card {
+    background-color: var(--dark-gray);
+    /* Фон карточки */
+    padding: 35px 25px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Центрирование контента в карточке */
+}
+
+.prize-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.prize-icon-wrapper {
+    font-size: 3rem;
+    /* Размер иконки */
+    color: var(--primary-color);
+    /* Цвет иконки */
+    margin-bottom: 20px;
+    width: 100px;
+    /* Фиксированная ширина для выравнивания */
+    height: 100px;
+    /* Фиксированная высота */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid var(--accent-color);
+    /* Дополнительная обводка */
+    border-radius: 50%;
+    /* Делаем круглым, как медальку */
+    background-color: rgba(0, 168, 255, 0.1);
+    /* Легкий фон */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.prize-card:hover .prize-icon-wrapper {
+    transform: rotate(15deg) scale(1.1);
+    /* Небольшой поворот и увеличение при наведении */
+    background-color: rgba(0, 168, 255, 0.2);
+}
+
+.prize-card .icon {
+    /* Стиль для самой иконки внутри wrapper */
+    /* Здесь стили не нужны, если они заданы в wrapper */
+}
+
+.prize-title {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.prize-description {
+    font-size: 1rem;
+    color: var(--light-gray);
+    font-weight: 300;
+    flex-grow: 1;
+    /* Позволяет описанию занять доступное пространство */
+}
+
+
+/* --- Responsive Styles для блока Призов --- */
+@media (max-width: 768px) {
+    .prizes-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .prize-card {
+        padding: 25px 15px;
+    }
+
+    .prize-icon-wrapper {
+        font-size: 2.5rem;
+        width: 80px;
+        height: 80px;
+    }
+
+    .prize-title {
+        font-size: 1.5rem;
+    }
+
+    .prize-description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .prizes-grid {
+        grid-template-columns: 1fr;
+        /* Одна колонка на маленьких экранах */
+    }
+
+    .prize-card {
+        padding: 20px 10px;
+    }
+
+    .prize-icon-wrapper {
+        font-size: 2.2rem;
+        width: 70px;
+        height: 70px;
+    }
+
+    .prize-title {
+        font-size: 1.4rem;
+    }
+}
+
+.crown-image {
+    position: absolute;
+    /* Позиционируем относительно ближайшего родителя с position: relative */
+    top: -80px;
+    /* Регулируйте это значение, чтобы поднять корону выше карточки */
+    /* left: 100px; */
+    /* Центрируем корону по горизонтали */
+    /* transform: translateX(-50%); Точная центровка */
+    /* width: 50px; */
+    /* Регулируйте размер короны */
+    /* height: auto; */
+    /* Сохраняем пропорции */
+    z-index: 2321;
+}
